@@ -8,6 +8,17 @@ body {
     flex-direction: column;
     position: relative;
 }
+.title {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Adjust spacing between icon & text */
+    font-size: 28px; /* Adjust as needed */
+}
+
+.hvd-icon {
+    width: 30px; /* Adjust size */
+    height: auto;
+}
 
 .heart {
     position: absolute;
