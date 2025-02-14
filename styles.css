@@ -1,0 +1,205 @@
+body {
+    background-color: pink;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    position: relative;
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    transform: rotate(-45deg);
+    animation: float 5s infinite linear;
+}
+.heart:before, .heart:after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 50%;
+}
+.heart:before { top: -10px; left: 0; }
+.heart:after { left: 10px; top: 0; }
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(-45deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(-45deg); opacity: 0; }
+}
+
+.envelope {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    background-color: #ff4d6d;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 150px;
+    background-color: #ff3366;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: transform 0.5s ease;
+    transform-origin: top center;
+}
+
+.letter {
+    display: none;
+    width: 60%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #ff4d6d;
+    line-height: 1.6;
+    font-family: 'Dancing Script', cursive;
+    font-size: 20px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.letter h1 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #ff3366;
+}
+
+.open-btn {
+    position: absolute;
+    bottom: 10px;
+    background: #ff3366;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open + .letter {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.scattered-photo {
+    width: 200px;
+    height: 230px;
+    object-fit: cover;
+    border: 2px solid #ff4d6d;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+#photo-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    display: none;
+}
+
+#confetti-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color:white;
+    opacity: 0.8;
+    animation: fall 2s linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        height: 100vh;
+        padding: 0;
+    }
+    .envelope {
+        width: 90%;
+        max-width: 350px;
+        height: 220px;
+    }
+    .flap {
+        height: 100px;
+    }
+    .letter {
+        width: 90%;
+        max-width: 300px;
+        font-size: 16px;
+        padding: 15px;
+    }
+    .scatter-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 12px;
+    }
+    .scattered-photo {
+        width: 120px;
+        height: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .envelope {
+        max-width: 300px;
+        height: 200px;
+    }
+    .flap {
+        height: 90px;
+    }
+    .letter {
+        max-width: 250px;
+        font-size: 14px;
+        padding: 12px;
+    }
+    .scatter-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+    }
+    .scattered-photo {
+        width: 100px;
+        height: 120px;
+    }
+}
